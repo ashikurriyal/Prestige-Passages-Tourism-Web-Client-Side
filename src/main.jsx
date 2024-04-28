@@ -12,6 +12,11 @@ import AuthProviders from './Providers/AuthProviders';
 import { HelmetProvider } from 'react-helmet-async';
 import Login from './Components/Login';
 import Register from './Components/Register';
+import AllTouristsSpot from './Components/AllTouristsSpot';
+import PrivateRoutes from './Routes/PrivateRoutes';
+import AddTouristsSpot from './Components/AddTouristsSpot';
+import MyList from './Components/MyList';
+
 
 const router = createBrowserRouter([
   {
@@ -30,6 +35,18 @@ const router = createBrowserRouter([
       {
         path: '/register',
         element: <Register></Register>
+      },
+      {
+        path: '/alltouristspot',
+        element: <AllTouristsSpot></AllTouristsSpot>
+      },
+      {
+        path: '/addtouristsspot',
+        element: <PrivateRoutes><AddTouristsSpot></AddTouristsSpot></PrivateRoutes>
+      },
+      {
+        path: '/mylist',
+        element: <PrivateRoutes><MyList></MyList></PrivateRoutes>
       }
     ]
   },

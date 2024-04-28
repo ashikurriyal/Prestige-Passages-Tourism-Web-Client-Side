@@ -17,6 +17,27 @@ const Navbar = () => {
             return isActive ? { backgroundColor: 'white', color: 'rgb(2 132 199)', fontWeight: '600', borderColor: 'rgb(2, 132, 199)', borderWidth: '2px', borderStyle: 'solid' } : {}
         }}>Home</NavLink></li>
 
+        <li className="text-xl font-medium"><NavLink to="/alltouristspot" style={({ isActive }) => {
+            return isActive ? { backgroundColor: 'white', color: 'rgb(2 132 199)', fontWeight: '600', borderColor: 'rgb(2, 132, 199)', borderWidth: '2px', borderStyle: 'solid' } : {}
+        }}>All Tourists Spot</NavLink></li>
+
+        {
+            user &&
+            <>
+                <li className="text-xl font-medium"><NavLink to="/addtouristsspot" style={({ isActive }) => {
+                    return isActive ? { backgroundColor: 'white', color: 'rgb(2 132 199)', fontWeight: '600', borderColor: 'rgb(2, 132, 199)', borderWidth: '2px', borderStyle: 'solid' } : {}
+                }}>Add Tourists Spot</NavLink></li>
+            </>
+        }
+        {
+            user &&
+            <>
+                <li className="text-xl font-medium"><NavLink to="/mylist" style={({ isActive }) => {
+                    return isActive ? { backgroundColor: 'white', color: 'rgb(2 132 199)', fontWeight: '600', borderColor: 'rgb(2, 132, 199)', borderWidth: '2px', borderStyle: 'solid' } : {}
+                }}>My List</NavLink></li>
+            </>
+        }
+
     </>
     return (
         <div className="navbar bg-base-100 p-4">
