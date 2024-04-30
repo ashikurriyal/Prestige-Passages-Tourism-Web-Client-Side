@@ -41,7 +41,8 @@ const router = createBrowserRouter([
       },
       {
         path: '/alltouristspot',
-        element: <AllTouristsSpot></AllTouristsSpot>
+        element: <AllTouristsSpot></AllTouristsSpot>,
+        loader: () => fetch(`http://localhost:5300/place`)
       },
       {
         path: '/addtouristsspot',
