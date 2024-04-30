@@ -1,5 +1,6 @@
 import { useContext } from "react";
 import { AuthContext } from "../Providers/AuthProviders";
+import Swal from 'sweetalert2'
 
 
 const AddTouristsSpot = () => {
@@ -32,7 +33,17 @@ const AddTouristsSpot = () => {
         })
             .then(res => res.json()
             )
-            .then(data => console.log(data))
+            .then(data => {
+                if(data.modifiedCount > 0){
+                    Swal.fire({
+                        title: 'Success',
+                        text: 'Do you want to continue',
+                        icon: 'success',
+                        confirmButtonText: 'Cool'
+                      })
+                }
+            })
+            form.reset();
 
         console.log(place)
 

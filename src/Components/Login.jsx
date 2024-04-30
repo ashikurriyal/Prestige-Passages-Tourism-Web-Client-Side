@@ -64,9 +64,9 @@ const Login = () => {
     return (
         <div className="hero">
             <Helmet>
-                <title>
+                {/* <title>
                     Deluxe Dwellings | Login
-                </title>
+                </title> */}
             </Helmet>
             <div className="hero-content flex-col lg:w-[480px] ">
                 <div className="text-center lg:text-left">
