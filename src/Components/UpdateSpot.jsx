@@ -1,9 +1,13 @@
 import { useContext } from "react";
+import { useLoaderData } from "react-router-dom";
 import { AuthContext } from "../Providers/AuthProviders";
-import Swal from 'sweetalert2'
+import Swal from "sweetalert2";
 
+const UpdateSpot = () => {
 
-const AddTouristsSpot = () => {
+    const loadData = useLoaderData();
+    const { image, tourists_spot_name, country_Name, location, short_description, average_cost, seasonality, travel_time, totaVisitorsPerYear } = loadData
+    console.log(loadData)
 
     const { user } = useContext(AuthContext)
 
@@ -22,38 +26,36 @@ const AddTouristsSpot = () => {
         const travel_time = form.travel_time.value;
         const totaVisitorsPerYear = form.totaVisitorsPerYear.value;
 
-        const place = { image, tourists_spot_name, country_Name, location, short_description, average_cost, seasonality, travel_time, totaVisitorsPerYear }
+        const Updatedplace = { image, tourists_spot_name, country_Name, location, short_description, average_cost, seasonality, travel_time, totaVisitorsPerYear }
 
         fetch('http://localhost:5300/place', {
-            method: 'POST',
+            method: 'PUT',
             headers: {
                 'content-type': 'application/json'
             },
-            body: JSON.stringify(place)
+            body: JSON.stringify(Updatedplace)
         })
             .then(res => res.json()
             )
             .then(data => {
-                if(data.modifiedCount > 0){
+                if (data.modifiedCount > 0) {
                     Swal.fire({
                         title: 'Success',
                         text: 'Do you want to continue',
                         icon: 'success',
                         confirmButtonText: 'Cool'
-                      })
+                    })
                 }
             })
-            form.reset();
+        form.reset();
 
-        console.log(place)
+        console.log(Updatedplace)
 
     }
-
-
     return (
         <form onSubmit={handleAddTouristSpot} className="flex flex-col items-center mb-12">
             <div>
-                <h1 className="text-3xl font-bold text-center">Add Item</h1>
+                <h1 className="text-4xl font-bold text-centerlg:text-5xl font-playfair  text-sky-600 mb-7">Update Spot</h1>
             </div>
             <div className="w-1/2 flex flex-col  gap-6">
                 {/* first row */}
@@ -63,7 +65,7 @@ const AddTouristsSpot = () => {
                             <div className="label">
                                 <span className="label-text">Tourist Spot Name</span>
                             </div>
-                            <input name="tourists_spot_name" type="text" placeholder="Type here" className="input input-bordered w-full max-w-lg" />
+                            <input defaultValue={tourists_spot_name} name="tourists_spot_name" type="text" placeholder="Type here" className="input input-bordered w-full max-w-lg" />
                         </label>
                     </div>
 
@@ -72,7 +74,7 @@ const AddTouristsSpot = () => {
                             <div className="label">
                                 <span className="label-text">Country Name</span>
                             </div>
-                            <select name="country_Name" className="select select-bordered">
+                            <select defaultValue={country_Name} name="country_Name" className="select select-bordered">
                                 <option value={'France'}>France</option>
                                 <option value={'Italy'}>Italy</option>
                                 <option value={'Spain'}>Spain</option>
@@ -91,7 +93,7 @@ const AddTouristsSpot = () => {
                             <div className="label">
                                 <span className="label-text">Location</span>
                             </div>
-                            <input name="location" type="text" placeholder="Type here" className="input input-bordered w-full max-w-lg" />
+                            <input defaultValue={location} name="location" type="text" placeholder="Type here" className="input input-bordered w-full max-w-lg" />
                         </label>
                     </div>
                     <div className="flex-1">
@@ -99,7 +101,7 @@ const AddTouristsSpot = () => {
                             <div className="label">
                                 <span className="label-text">Seasonality</span>
                             </div>
-                            <select name="seasonality" className="select select-bordered">
+                            <select defaultValue={seasonality} name="seasonality" className="select select-bordered">
                                 <option value={'Summer'}>Summer</option>
                                 <option value={'Spring'}>Spring</option>
                                 <option value={'Winter'}>Winter</option>
@@ -115,7 +117,7 @@ const AddTouristsSpot = () => {
                             <div className="label">
                                 <span className="label-text">Travel Time</span>
                             </div>
-                            <select name="travel_time" className="select select-bordered">
+                            <select defaultValue={travel_time} name="travel_time" className="select select-bordered">
                                 <option value={"3 Days"}>3 Days</option>
                                 <option value={"5 Days"}>5 Days</option>
                                 <option value={"7 Days"}>7 Days</option>
@@ -127,7 +129,7 @@ const AddTouristsSpot = () => {
                             <div className="label">
                                 <span className="label-text">Average Cost</span>
                             </div>
-                            <input name="average_cost" type="text" placeholder="Type here" className="input input-bordered w-full max-w-lg" />
+                            <input defaultValue={average_cost} name="average_cost" type="text" placeholder="Type here" className="input input-bordered w-full max-w-lg" />
                         </label>
                     </div>
                 </div>
@@ -138,7 +140,7 @@ const AddTouristsSpot = () => {
                             <div className="label">
                                 <span className="label-text">Total Visitors Per Year</span>
                             </div>
-                            <select name="totaVisitorsPerYear" className="select select-bordered">
+                            <select defaultValue={totaVisitorsPerYear} name="totaVisitorsPerYear" className="select select-bordered">
                                 <option value={'10000'}>10000</option>
                                 <option value={'12000'}>12000</option>
                                 <option value={'15000'}>15000</option>
@@ -153,7 +155,7 @@ const AddTouristsSpot = () => {
                             <div className="label">
                                 <span className="label-text">Short Description</span>
                             </div>
-                            <input name="short_description" type="text" placeholder="Type here" className="input input-bordered w-full max-w-lg" />
+                            <input defaultValue={short_description} name="short_description" type="text" placeholder="Type here" className="input input-bordered w-full max-w-lg" />
                         </label>
 
                     </div>
@@ -185,16 +187,16 @@ const AddTouristsSpot = () => {
                         <div className="label">
                             <span className="label-text">Image URL</span>
                         </div>
-                        <input name="image" type="text" placeholder="Type here" className="input input-bordered w-full" />
+                        <input defaultValue={image} name="image" type="text" placeholder="Type here" className="input input-bordered w-full" />
                     </label>
                 </div>
 
                 <div>
-                    <input type="submit" value="Add" className="btn w-full bg-[#0a58be0d] rounded-2xl border-sky-500 border-2" />
+                    <input type="submit" value="Update" className="btn w-full bg-[#0a58be0d] rounded-2xl border-sky-500 border-2" />
                 </div>
             </div>
         </form>
     );
 };
 
-export default AddTouristsSpot;
+export default UpdateSpot;
