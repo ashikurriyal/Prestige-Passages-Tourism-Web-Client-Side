@@ -11,6 +11,15 @@ const gitHubProvider = new GithubAuthProvider()
 
 
 const AuthProviders = ({ children }) => {
+    
+    const [loadedItem, setloadedItem] = useState()
+    useEffect(() => {
+        fetch('http://localhost:5300/place')
+        .then(res => res.json())
+        .then(data => {
+            setloadedItem(data)
+        })
+    },[])
 
     const [user, setUser] = useState(null)
     const [loading, setloading] = useState(true)
@@ -55,7 +64,7 @@ const AuthProviders = ({ children }) => {
         return signInWithPopup(auth, gitHubProvider)
     }
 
-    const authInfo = { user, loading, createUser, signInUser, logOut, signInWithGoogle, signInWithGitHub }
+    const authInfo = { user, loadedItem, loading, createUser, signInUser, logOut, signInWithGoogle, signInWithGitHub }
     return (
         <AuthContext.Provider value={authInfo}>
             {children}
