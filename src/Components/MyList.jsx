@@ -1,6 +1,6 @@
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../Providers/AuthProviders";
-import { Link, useNavigate } from "react-router-dom";
+import {  useNavigate } from "react-router-dom";
 
 
 const MyList = () => {
@@ -9,7 +9,6 @@ const MyList = () => {
     const email = user?.email;
 
     const [loadedItem, setloadedItem] = useState([])
-    const [customSort, setCustomSort] = useState(null)
 
     console.log(loadedItem)
     useEffect(() => {
