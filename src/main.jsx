@@ -47,8 +47,9 @@ const router = createBrowserRouter([
         element: <PrivateRoutes><AddTouristsSpot></AddTouristsSpot></PrivateRoutes>
       },
       {
-        path: '/mylist',
-        element: <PrivateRoutes><MyList></MyList></PrivateRoutes>
+        path: '/mylist/:email',
+        element: <PrivateRoutes><MyList></MyList></PrivateRoutes>,
+        loader: ({params}) => fetch(`http://localhost:5300/myList/${params.email}`)
       },
       {
         path: '/spot/:id',

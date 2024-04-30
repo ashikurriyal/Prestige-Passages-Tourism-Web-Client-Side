@@ -1,6 +1,5 @@
 import PropTypes from 'prop-types';
 import { BiWorld } from 'react-icons/bi';
-import { FaLandmark } from 'react-icons/fa';
 import { IoMdPricetags } from 'react-icons/io';
 import { IoLocationSharp, IoTimerOutline } from 'react-icons/io5';
 import { useLoaderData } from 'react-router-dom';
@@ -9,7 +8,7 @@ const DetailsTouristSpot = () => {
 
     const spot = useLoaderData();
     console.log(spot)
-    const { image, tourists_spot_name, country_Name, location, short_description, average_cost, seasonality, travel_time, totaVisitorsPerYear } = spot;
+    const { image, tourists_spot_name, country_Name, location, short_description, average_cost, seasonality, travel_time } = spot;
 
     return (
         <div className='container mx-auto'>

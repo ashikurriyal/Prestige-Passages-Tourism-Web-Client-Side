@@ -32,7 +32,7 @@ const Navbar = () => {
         {
             user &&
             <>
-                <li className="text-xl font-medium"><NavLink to="/mylist" style={({ isActive }) => {
+                <li className="text-xl font-medium"><NavLink to={'/mylist/:email'} style={({ isActive }) => {
                     return isActive ? { backgroundColor: 'white', color: 'rgb(2 132 199)', fontWeight: '600', borderColor: 'rgb(2, 132, 199)', borderWidth: '2px', borderStyle: 'solid' } : {}
                 }}>My List</NavLink></li>
             </>
