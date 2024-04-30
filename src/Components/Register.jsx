@@ -19,7 +19,7 @@ const Register = () => {
 
         if (!/^(?=.*[a-z])(?=.*[A-Z]).+$/.test(password)
         ) {
-            toast.error('Password Must be Contain One Uppercase and One Lowercase Letter')
+            // toast.error('Password Must be Contain One Uppercase and One Lowercase Letter')
             return
         }
 
