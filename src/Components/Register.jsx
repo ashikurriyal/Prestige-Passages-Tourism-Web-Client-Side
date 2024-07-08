@@ -42,7 +42,7 @@ const Register = () => {
         <div className="hero">
             <Helmet>
                 <title>
-                    Deluxe Dwellings | Register
+                    Prestige Passages | Register
                 </title>
             </Helmet>
             <div className="hero-content flex-col lg:w-[480px]">

@@ -1,6 +1,7 @@
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../Providers/AuthProviders";
 import {  useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
 
 
 const MyList = () => {
@@ -12,7 +13,7 @@ const MyList = () => {
 
     console.log(loadedItem)
     useEffect(() => {
-        fetch(`http://localhost:5300/myList/${email}`)
+        fetch(`https://prestige-passages-server.vercel.app/myList/${email}`)
             .then(res => res.json())
             .then(data => {
                 setloadedItem(data)
@@ -22,9 +23,41 @@ const MyList = () => {
     const handleUpdateButton = (_id) => {
         navigate(`/update/${_id}`)
     }
+    const handleDeleteButton = (_id) => {
+
+        Swal.fire({
+            title: "Are you sure?",
+            text: "You won't be able to revert this!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, delete it!"
+        }).then((result) => {
+            if (result.isConfirmed) {
+                fetch(`https://prestige-passages-server.vercel.app/myList/${_id}`, {
+                    method: "DELETE"
+                })
+                    .then(res => res.json())
+                    .then(data => {
+                        if (data.deletedCount > 0) {
+                            const remaining = loadedItem.filter(item => item._id !== _id);
+                            setloadedItem(remaining);
+                        }
+                    })
+
+                Swal.fire({
+                    title: "Deleted!",
+                    text: "Your item has been deleted.",
+                    icon: "success"
+                });
+            }
+        });
+
+    }
     return (
         <div className="container mx-auto mb-12">
-            <div className="text-center mb-10 mt-12">
+            <div className="text-center mb-10 mt-6">
                 <h1 className="lg:text-5xl text-3xl font-playfair font-bold text-sky-600">Your Added Tourist Spot</h1>
             </div>
             <div className="overflow-x-auto">
@@ -44,11 +77,6 @@ const MyList = () => {
                         {
                             loadedItem.map(item => <>
                                 <tr className="hover"> 
-                                    {/* <th>
-                                        <label>
-                                            <input type="checkbox" className="checkbox" />
-                                        </label>
-                                    </th> */}
                                     <td>
                                         <div className="flex items-center gap-3">
                                             <div className="avatar">
@@ -64,15 +92,13 @@ const MyList = () => {
                                     </td>
                                     <td>
                                         {item.location}
-                                        {/* <br /> */}
-                                        {/* <span className="badge badge-ghost badge-sm">Desktop Support Technician</span> */}
                                     </td>
                                     <td>{item.country_Name}</td>
                                     <td>{item.travel_time}</td>
                                     <td>${item.average_cost}</td>
-                                    <th className="space-x-4">
+                                    <th className="space-x-4 flex justify-center">
                                         <button className="btn btn-ghost btn-xs bg-[#0a58be0d] rounded-2xl border-sky-500 border-2" onClick={() =>handleUpdateButton(item._id)}>Update</button>
-                                        <button className="btn btn-ghost btn-xs bg-[#0a58be0d] rounded-2xl border-sky-500 border-2">Delete</button>
+                                        <button className="btn btn-ghost btn-xs bg-[#0a58be0d] rounded-2xl border-sky-500 border-2" onClick={() => handleDeleteButton(item._id)}>Delete</button>
                                     </th>
                                 </tr>
                             </>)

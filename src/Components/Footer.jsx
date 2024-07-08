@@ -43,7 +43,7 @@ const Footer = () => {
                 </div>
             </div>
             <hr />
-            <div className="py-6 text-sm text-center text-gray-300">© 2024 <span className="text-white font-semibold">Deluxe Dwellings</span>. All rights reserved.</div>
+            <div className="py-6 text-sm text-center text-gray-300">© 2024 <span className="text-white font-semibold">Prestige Passages</span>. All rights reserved.</div>
         </footer>
     );
 };

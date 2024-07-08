@@ -23,7 +23,7 @@ const DetailsTouristSpot = () => {
                     data-aos-easing="linear"
                     data-aos-duration="2500">
                     <img className="lg: w-[620px]" src={image} alt="Album" />
-                    <div className="card-body gap-4">
+                    <div className="flex flex-col p-4 gap-4">
                         <h2 className="card-title text-4xl">
                             {tourists_spot_name}
                             <hr />
@@ -39,7 +39,7 @@ const DetailsTouristSpot = () => {
                             <p className="text-[#131313] font-worksans font-bold text-base">Visitors Per Year:</p>
                             <p className="bg-[#0a58be0d] rounded-2xl  px-3 py-1 border-sky-500 border-2 ">{seasonality}</p>
                         </div> */}
-                        <div className="flex gap-8">
+                        <div className="flex flex-col lg:flex-row gap-8">
                             <div className="bg-sky-600 flex flex-col items-center text-white shadow-2xl rounded-md p-2 gap-2">
                                 <h1 className="text-xl font-medium">Location</h1>
                                 <div className="text-2xl">

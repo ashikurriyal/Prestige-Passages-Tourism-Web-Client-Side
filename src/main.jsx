@@ -18,6 +18,7 @@ import AddTouristsSpot from './Components/AddTouristsSpot';
 import MyList from './Components/MyList';
 import DetailsTouristSpot from './Components/DetailsTouristSpot';
 import UpdateSpot from './Components/UpdateSpot';
+import CountriesCard from './Components/CountriesCard';
 
 
 const router = createBrowserRouter([
@@ -29,7 +30,7 @@ const router = createBrowserRouter([
       {
         path: '/',
         element: <Home></Home>,
-        loader: () => fetch('http://localhost:5300/place')
+        loader: () => fetch('https://prestige-passages-server.vercel.app/place')
       },
       {
         path: '/login',
@@ -42,7 +43,7 @@ const router = createBrowserRouter([
       {
         path: '/alltouristspot',
         element: <AllTouristsSpot></AllTouristsSpot>,
-        loader: () => fetch(`http://localhost:5300/place`)
+        loader: () => fetch(`https://prestige-passages-server.vercel.app/place`)
       },
       {
         path: '/addtouristsspot',
@@ -51,17 +52,22 @@ const router = createBrowserRouter([
       {
         path: '/mylist/:email',
         element: <PrivateRoutes><MyList></MyList></PrivateRoutes>,
-        loader: ({params}) => fetch(`http://localhost:5300/myList/${params.email}`)
+        loader: ({params}) => fetch(`https://prestige-passages-server.vercel.app/myList/${params.email}`)
       },
       {
         path: '/spot/:id',
         element: <PrivateRoutes><DetailsTouristSpot></DetailsTouristSpot></PrivateRoutes>,
-        loader: ({params}) => fetch(`http://localhost:5300/place/${params.id}`)
+        loader: ({params}) => fetch(`https://prestige-passages-server.vercel.app/place/${params.id}`)
       },
       {
         path: '/update/:id',
         element: <PrivateRoutes><UpdateSpot></UpdateSpot></PrivateRoutes>,
-        loader: ({params}) => fetch(`http://localhost:5300/place/${params.id}`)
+        loader: ({params}) => fetch(`https://prestige-passages-server.vercel.app/place/${params.id}`)
+      },
+      {
+        path: '/country/:country_Name',
+        element: <CountriesCard></CountriesCard>,
+        loader: ({params}) => fetch(`https://prestige-passages-server.vercel.app/country/${params.country_Name}`)
       }
     ]
   },

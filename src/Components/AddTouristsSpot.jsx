@@ -21,10 +21,11 @@ const AddTouristsSpot = () => {
         const seasonality = form.seasonality.value;
         const travel_time = form.travel_time.value;
         const totaVisitorsPerYear = form.totaVisitorsPerYear.value;
+        const email = form.email.value;
 
-        const place = { image, tourists_spot_name, country_Name, location, short_description, average_cost, seasonality, travel_time, totaVisitorsPerYear }
+        const place = { image, tourists_spot_name, country_Name, location, short_description, average_cost, seasonality, travel_time, totaVisitorsPerYear,email }
 
-        fetch('http://localhost:5300/place', {
+        fetch('https://prestige-passages-server.vercel.app/place', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'
@@ -34,16 +35,16 @@ const AddTouristsSpot = () => {
             .then(res => res.json()
             )
             .then(data => {
-                if(data.modifiedCount > 0){
+                if (data.modifiedCount > 0) {
                     Swal.fire({
                         title: 'Success',
                         text: 'Do you want to continue',
                         icon: 'success',
                         confirmButtonText: 'Cool'
-                      })
+                    })
                 }
             })
-            form.reset();
+        form.reset();
 
         console.log(place)
 
@@ -52,12 +53,12 @@ const AddTouristsSpot = () => {
 
     return (
         <form onSubmit={handleAddTouristSpot} className="flex flex-col items-center mb-12">
-            <div>
-                <h1 className="text-3xl font-bold text-center">Add Item</h1>
+            <div className="text-center mb-10 mt-6">
+                <h1 className="lg:text-5xl text-3xl font-playfair font-bold text-sky-600">Add Tourist Spot</h1>
             </div>
             <div className="w-1/2 flex flex-col  gap-6">
                 {/* first row */}
-                <div className="flex justify-between gap-5">
+                <div className="flex flex-col lg:flex-row justify-between gap-5">
                     <div className="flex-1">
                         <label className="form-control w-full max-w-lg">
                             <div className="label">
@@ -84,7 +85,7 @@ const AddTouristsSpot = () => {
                     </div>
                 </div>
                 {/* second row */}
-                <div className="flex justify-between gap-5">
+                <div className="flex  flex-col lg:flex-row justify-between gap-5">
 
                     <div className="flex-1">
                         <label className="form-control w-full max-w-lg">
@@ -108,7 +109,7 @@ const AddTouristsSpot = () => {
                     </div>
                 </div>
                 {/* third row */}
-                <div className="flex justify-between gap-5">
+                <div className="flex  flex-col lg:flex-row justify-between gap-5">
 
                     <div className="flex-1">
                         <label className="form-control w-full max-w-lg">
@@ -132,7 +133,7 @@ const AddTouristsSpot = () => {
                     </div>
                 </div>
                 {/* fourth row */}
-                <div className="flex justify-between gap-5">
+                <div className="flex  flex-col lg:flex-row justify-between gap-5">
                     <div className="flex-1">
                         <label className="form-control w-full max-w-lg">
                             <div className="label">

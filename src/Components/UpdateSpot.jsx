@@ -6,13 +6,14 @@ import Swal from "sweetalert2";
 const UpdateSpot = () => {
 
     const loadData = useLoaderData();
-    const { image, tourists_spot_name, country_Name, location, short_description, average_cost, seasonality, travel_time, totaVisitorsPerYear } = loadData
+
+    const { _id, image, tourists_spot_name, country_Name, location, short_description, average_cost, seasonality, travel_time, totaVisitorsPerYear } = loadData
     console.log(loadData)
 
     const { user } = useContext(AuthContext)
 
 
-    const handleAddTouristSpot = e => {
+    const handleUpdateSpot = e => {
 
         e.preventDefault();
         const form = e.target;
@@ -28,7 +29,8 @@ const UpdateSpot = () => {
 
         const Updatedplace = { image, tourists_spot_name, country_Name, location, short_description, average_cost, seasonality, travel_time, totaVisitorsPerYear }
 
-        fetch('http://localhost:5300/place', {
+        fetch(`https://prestige-passages-server.vercel.app/place/${_id}`, {
+            // mode: "no-cors",
             method: 'PUT',
             headers: {
                 'content-type': 'application/json'
@@ -40,10 +42,10 @@ const UpdateSpot = () => {
             .then(data => {
                 if (data.modifiedCount > 0) {
                     Swal.fire({
-                        title: 'Success',
+                        title: 'Updated',
                         text: 'Do you want to continue',
                         icon: 'success',
-                        confirmButtonText: 'Cool'
+                        confirmButtonText: 'Okay'
                     })
                 }
             })
@@ -53,13 +55,13 @@ const UpdateSpot = () => {
 
     }
     return (
-        <form onSubmit={handleAddTouristSpot} className="flex flex-col items-center mb-12">
+        <form onSubmit={handleUpdateSpot} className="flex flex-col items-center mb-12">
             <div>
                 <h1 className="text-4xl font-bold text-centerlg:text-5xl font-playfair  text-sky-600 mb-7">Update Spot</h1>
             </div>
             <div className="w-1/2 flex flex-col  gap-6">
                 {/* first row */}
-                <div className="flex justify-between gap-5">
+                <div className="flex  flex-col lg:flex-row justify-between gap-5">
                     <div className="flex-1">
                         <label className="form-control w-full max-w-lg">
                             <div className="label">
@@ -86,7 +88,7 @@ const UpdateSpot = () => {
                     </div>
                 </div>
                 {/* second row */}
-                <div className="flex justify-between gap-5">
+                <div className="flex  flex-col lg:flex-row justify-between gap-5">
 
                     <div className="flex-1">
                         <label className="form-control w-full max-w-lg">
@@ -110,7 +112,7 @@ const UpdateSpot = () => {
                     </div>
                 </div>
                 {/* third row */}
-                <div className="flex justify-between gap-5">
+                <div className="flex  flex-col lg:flex-row justify-between gap-5">
 
                     <div className="flex-1">
                         <label className="form-control w-full max-w-lg">
@@ -134,7 +136,7 @@ const UpdateSpot = () => {
                     </div>
                 </div>
                 {/* fourth row */}
-                <div className="flex justify-between gap-5">
+                <div className="flex  flex-col lg:flex-row justify-between gap-5">
                     <div className="flex-1">
                         <label className="form-control w-full max-w-lg">
                             <div className="label">
